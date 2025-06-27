@@ -7,7 +7,7 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   ami           = "ami-0a3ece531caa5d49d" # Update dengan AMI Singapore
   instance_type = "t2.micro"
-  subnet_id     = "subnet-0123456789abcdef0"
+  subnet_id     = "subnet-03d5839f0ba3b2bdf"
 
   vpc_security_group_ids = [aws_security_group.allow_web2.id]
 
