@@ -1,0 +1,27 @@
+name: CI/CD Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Langkah Terraform, Docker, ECS, dll...
+      - name: Terraform Apply
+        run: |
+          terraform init
+          terraform apply -auto-approve
+
+      # ✅ Tambahkan ini untuk notifikasi Telegram
+      - name: Notify Telegram
+        if: success()
+        run: |
+          curl -s -X POST https://api.telegram.org/bot${{ secrets.7961551464:AAH0BUYNRzXr3ZW3mq-RfiqnDNQLtOcnpUo }}/sendMessage \
+            -d chat_id=${{ secrets.280055225 }} \
+            -d text="✅ Deploy sukses di GitHub Actions ke AWS ECS!"
