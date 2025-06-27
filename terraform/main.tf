@@ -31,7 +31,7 @@ output "instance_public_ip" {
 resource "aws_security_group" "allow_web" {
   name        = "allow_web"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = "vpc-0bbb39eaf3df2752e"  # Ganti dengan default VPC ID kamu dari AWS Console
+  vpc_id      = "vpc-04236a86e95c878c8"  # Ganti dengan default VPC ID kamu dari AWS Console
 
   ingress {
     description = "Allow HTTP"
