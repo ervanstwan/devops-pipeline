@@ -8,6 +8,8 @@ resource "aws_instance" "app_server" {
   ami           = "ami-04173560437081c75" # Update dengan AMI Singapore
   instance_type = "t2.micro"
 
+  vpc_security_group_ids = [aws_security_group.allow_web.id]
+
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
@@ -16,7 +18,7 @@ resource "aws_instance" "app_server" {
               systemctl enable nginx
               echo "Deployed via Terraform 🚀" > /usr/share/nginx/html/index.html
               EOF
-              
+
   tags = {
     Name = "AppServer"
   }
@@ -24,6 +26,27 @@ resource "aws_instance" "app_server" {
 
 output "instance_public_ip" {
   value = aws_instance.app_server.public_ip
+}
+
+resource "aws_security_group" "allow_web" {
+  name        = "allow_web"
+  description = "Allow HTTP inbound traffic"
+  vpc_id      = "vpc-0bbb39eaf3df2752e"  # Ganti dengan default VPC ID kamu dari AWS Console
+
+  ingress {
+    description = "Allow HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Artinya: Terbuka untuk semua IP publik
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]  # Semua trafik keluar diizinkan
+  }
 }
 
 
