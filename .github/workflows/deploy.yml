@@ -31,10 +31,24 @@ jobs:
 
       - name: Terraform Plan
         working-directory: terraform
-        run: terraform plan
+        run: terraform plan -out=tfplan.out | tee tfplan.log
         timeout-minutes: 10
+
+      - name: Upload Terraform Plan Log
+        uses: actions/upload-artifact@v3
+        with:
+        name: tfplan-log
+        path: terraform/tfplan.log
+
+      - name: Terraform Validate
+        working-directory: terraform
+        run: terraform validate
 
       - name: Terraform Apply
         working-directory: terraform
         run: terraform apply -auto-approve
         timeout-minutes: 10
+
+      - name: Terraform Output
+        working-directory: terraform
+        run: terraform output
