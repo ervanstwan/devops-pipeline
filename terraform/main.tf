@@ -30,7 +30,7 @@ output "instance_public_ip" {
 }
 
 resource "aws_security_group" "allow_web2" {
-  name        = "allow_web2"
+  name        = "allow_web_http"
   description = "Allow HTTP inbound traffic"
   vpc_id      = "vpc-0949919da91520f2c"  # Ganti dengan default VPC ID kamu dari AWS Console
 
