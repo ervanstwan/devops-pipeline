@@ -21,6 +21,12 @@ jobs:
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
 
+      - name: Debug AWS vars (temporary)
+        run: |
+          echo "Length AWS_ACCESS_KEY_ID: ${#AWS_ACCESS_KEY_ID}"
+          echo "Length AWS_SECRET_ACCESS_KEY: ${#AWS_SECRET_ACCESS_KEY}"
+          echo "AWS_REGION=$AWS_REGION"
+
       - name: Terraform Init
         working-directory: terraform
         run: terraform init
