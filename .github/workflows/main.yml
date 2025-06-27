@@ -22,6 +22,6 @@ jobs:
       - name: Notify Telegram
         if: success()
         run: |
-          curl -s -X POST https://api.telegram.org/bot${{ secrets.7961551464:AAH0BUYNRzXr3ZW3mq-RfiqnDNQLtOcnpUo }}/sendMessage \
-            -d chat_id=${{ secrets.280055225 }} \
+          curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
+            -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
             -d text="✅ Deploy sukses di GitHub Actions ke AWS ECS!"
