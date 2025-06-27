@@ -37,8 +37,8 @@ jobs:
       - name: Upload Terraform Plan Log
         uses: actions/upload-artifact@v3
         with:
-        name: tfplan-log
-        path: terraform/tfplan.log
+          name: tfplan-log
+          path: terraform/tfplan.log
 
       - name: Terraform Validate
         working-directory: terraform
