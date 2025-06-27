@@ -5,10 +5,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "vpc-04236a86e95c878c8" # Update dengan AMI Singapore
+  ami           = "vpc-0bbb39eaf3df2752e" # Update dengan AMI Singapore
   instance_type = "t2.micro"
 
-  vpc_security_group_ids = ["sg-0783d7a80f0100a8e"]
+  vpc_security_group_ids = ["sg-00a71892e64d09d45"]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -31,7 +31,7 @@ output "instance_public_ip" {
 resource "aws_security_group" "allow_web" {
   name        = "allow_web"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = "vpc-04236a86e95c878c8"  # Ganti dengan default VPC ID kamu dari AWS Console
+  vpc_id      = "vpc-0bbb39eaf3df2752e"  # Ganti dengan default VPC ID kamu dari AWS Console
 
   ingress {
     description = "Allow HTTP"
