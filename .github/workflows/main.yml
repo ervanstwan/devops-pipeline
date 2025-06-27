@@ -12,13 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Langkah Terraform, Docker, ECS, dll...
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+
       - name: Terraform Apply
         run: |
           terraform init
           terraform apply -auto-approve
 
-      # ✅ Tambahkan ini untuk notifikasi Telegram
       - name: Notify Telegram
         if: success()
         run: |
