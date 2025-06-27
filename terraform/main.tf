@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "vpc-0bbb39eaf3df2752e" # Update dengan AMI Singapore
+  ami           = "ami-0ba62214afa52bec7" # Update dengan AMI Singapore
   instance_type = "t2.micro"
 
   vpc_security_group_ids = ["sg-00a71892e64d09d45"]
